@@ -182,25 +182,13 @@ export default {
     },
     getIdList(){
       fetch("http://localhost:4567/idlist")
-      .then(res => {
-        console.log(res)
-      })
-      .then(data => {
-        console.log(data);
-      })
-      .then(() => {
-        //console.log(obj);
-      });
+      .then(res => res.json())
+      .then(data => console.log(data))
     },
     getNameList(){
-      fetch("http://localhost:4567/namelist", {mode: 'no-cors'})
+      fetch("http://localhost:4567/namelist")
       .then(res => res.json())
-      .then(data => {
-        console.log(data)
-      })
-      .then(() => {
-        //console.log(obj);
-      });
+      .then(data => console.log(data))
     }
   },
   mounted() {
