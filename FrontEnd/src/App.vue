@@ -174,10 +174,39 @@ export default {
       console.log("toggleLed");
       fetch("http://192.168.2.30/"+x, {mode: 'no-cors'});
     },
+    async test(){
+      let obj;
+      const res = await fetch('http://localhost:4567/idlist', {mode: 'no-cors'})
+      obj = await res.json();
+      console.log(obj)
+    },
+    getIdList(){
+      fetch("http://localhost:4567/idlist")
+      .then(res => {
+        console.log(res)
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .then(() => {
+        //console.log(obj);
+      });
+    },
+    getNameList(){
+      fetch("http://localhost:4567/namelist", {mode: 'no-cors'})
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
+      .then(() => {
+        //console.log(obj);
+      });
+    }
   },
   mounted() {
-    this.createConnection();
-    this.doSubscribe();
+    //this.createConnection();
+    //this.doSubscribe();
+    this.getIdList();
   },
   beforeUnmount() {
     this.destroyConnection();
