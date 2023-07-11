@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>Serveur de controle et d'archive Beacon BLE</h1>
-    <h2 v-if="entriesId.lenght > 0">Historique d'entré et de sortie</h2>
-    <table class="tableES" v-if="entriesId.lenght > 0">
+    <h2 v-if="entriesId.length > 0">Historique d'entré et de sortie</h2>
+    <table class="tableES" v-if="entriesId.length > 0">
       <tr>
         <th>id</th>
         <th>date/heure</th>
@@ -10,12 +10,12 @@
       </tr>
       <tr v-for="(entryId, index) of entriesId" :key="index">
         <td>{{ entryId.id }}</td>
-        <td>{{ entryId.date }}</td>
-        <td>{{ entryId.local }}</td>
+        <td>{{ entryId.time }}</td>
+        <td>{{ entryId.piece }}</td>
       </tr>
     </table>
-    <h2 v-if="entries.lenght > 0">Historique d'entré et de sortie avec noms</h2>
-    <table class="tableES" v-if="entries.lenght > 0">
+    <h2 v-if="entries.length > 0">Historique d'entré et de sortie avec noms</h2>
+    <table class="tableES" v-if="entries.length > 0">
       <tr>
         <th>id</th>
         <th>name</th>
@@ -25,8 +25,8 @@
       <tr v-for="(entry, index) of entries" :key="index">
         <td>{{ entry.id }}</td>
         <td>{{ entry.name }}</td>
-        <td>{{ entry.date }}</td>
-        <td>{{ entry.local }}</td>
+        <td>{{ entry.time }}</td>
+        <td>{{ entry.piece }}</td>
       </tr>
     </table>
     <br />
@@ -72,6 +72,8 @@ export default {
     },
   },
   mounted() {
+    this.getIdList();
+    this.getNameList();
     setInterval(() => {
       this.getNameList();
       this.getIdList();
